@@ -47,3 +47,21 @@ https://zenithmind-ai-yash11k.streamlit.app/
 - Pressure Gap, Academic Overload
 
 ---
+
+---
+
+## ⚙️ Run Locally
+```bash
+git clone https://github.com/Yash-11k/ZenithMind-AI.git
+cd ZenithMind-AI
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+---
+
+## 👨‍💻 Author
+**Yash** — B.Tech CSE | DCRUST Murthal
+
+---
+*ZenithMind AI · B.Tech CSE Project · DCRUST Murthal*
