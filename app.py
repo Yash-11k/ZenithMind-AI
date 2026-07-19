@@ -8,9 +8,7 @@ import plotly.graph_objects as go
 st.set_page_config(page_title="ZenithMind AI", page_icon="🧠", layout="centered")
 
 
-# -------------------------------------------------
 # Load trained model and feature list
-# -------------------------------------------------
 @st.cache_resource
 def load_assets():
     try:
@@ -25,9 +23,8 @@ def load_assets():
 model, features = load_assets()
 
 
-# -------------------------------------------------
 # App Title
-# -------------------------------------------------
+
 st.title("🧠 ZenithMind AI")
 st.subheader("Student Burnout Prediction System")
 st.write("Enter your academic and lifestyle metrics to estimate burnout risk.")
@@ -35,9 +32,7 @@ st.write("Enter your academic and lifestyle metrics to estimate burnout risk.")
 st.divider()
 
 
-# -------------------------------------------------
 # Input Section
-# -------------------------------------------------
 st.markdown("### 📊 Student Metrics")
 
 col1, col2 = st.columns(2)
@@ -64,9 +59,8 @@ with col2:
 st.divider()
 
 
-# -------------------------------------------------
+
 # Prediction Button
-# -------------------------------------------------
 predict_btn = st.button("Generate Wellness Report")
 
 
@@ -77,17 +71,17 @@ if predict_btn:
     
     else:
 
-        # ------------------------------------------
+       
         # Derived features (same as used in training)
-        # ------------------------------------------
+        
         stress_sleep_ratio = round(stress_level / sleep_hours if sleep_hours > 0 else 0, 2)
         pressure_gap = exam_pressure - stress_level
         academic_overload = round(study_hours * exam_pressure, 2)
 
 
-        # ------------------------------------------
+        
         # Create input dictionary
-        # ------------------------------------------
+       
         user_input = {
             "study_hours_per_day": study_hours,
             "exam_pressure": exam_pressure,
@@ -115,9 +109,9 @@ if predict_btn:
         data = data[features]
 
 
-        # ------------------------------------------
+        
         # Model prediction
-        # ------------------------------------------
+     
         prediction = model.predict(data)[0]
         score = round(float(prediction), 2)
 
@@ -126,9 +120,9 @@ if predict_btn:
         st.subheader("📋 Wellness Report")
 
 
-        # ------------------------------------------
+        
         # Show burnout risk level
-        # ------------------------------------------
+        
         if score < 1.5:
             st.success(f"Low Burnout Risk (Score: {score})")
         elif score < 2.5:
@@ -137,9 +131,9 @@ if predict_btn:
             st.error(f"High Burnout Risk (Score: {score})")
 
 
-        # ------------------------------------------
+       
         # Burnout Risk Meter (Gauge Chart)
-        # ------------------------------------------
+     
         fig = go.Figure(go.Indicator(
             mode="gauge+number",
             value=score,
@@ -159,9 +153,9 @@ if predict_btn:
         st.plotly_chart(fig, use_container_width=True)
 
 
-        # ------------------------------------------
+        
         # Simple Lifestyle Visualization
-        # ------------------------------------------
+      
         st.subheader("Student Lifestyle Overview")
 
         lifestyle_data = {
@@ -179,9 +173,8 @@ if predict_btn:
         st.bar_chart(lifestyle_df.set_index("Metric"))
 
 
-        # ------------------------------------------
         # Basic wellness recommendation
-        # ------------------------------------------
+        
         st.subheader("Wellness Advice")
 
         if sleep_hours < 6:

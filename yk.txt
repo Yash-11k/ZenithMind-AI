@@ -1,0 +1,10 @@
+docker build -t zenithmind-app .
+
+
+
+docker run -p 8501:8501 zenithmind-app
+
+
+git add requirements.txt Dockerfile
+git commit -m "Added Dockerfile and updated requirements for production deployment"
+git push origin main
