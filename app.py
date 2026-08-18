@@ -170,12 +170,12 @@ if predict_btn:
             columns=["Metric", "Hours"]
         )
 
-        st.bar_chart(lifestyle_df.set_index("Metric"))
+        st.bar_chart(lifestyle_df.set_index("Metric Chart"))
 
 
         # Basic wellness recommendation
         
-        st.subheader("Wellness Advice")
+        st.subheader("Wellness Advice to keep you on track")
 
         if sleep_hours < 6:
             st.write("• Try to increase your sleep duration for better recovery.")
@@ -184,7 +184,7 @@ if predict_btn:
             st.write("• High screen time detected. Consider reducing device usage.")
 
         if physical_activity < 1:
-            st.write("• Regular physical activity can help reduce stress levels.")
+            st.write("• Regular physical activity like walking, jumping , push ups can help reduce stress levels.")
 
         if stress_level > 7:
             st.write("• Stress level is high. Consider relaxation techniques or counseling.")
@@ -195,4 +195,4 @@ if predict_btn:
 
 st.divider()
 
-st.caption("ZenithMind AI | B.Tech CSE Project | Student Burnout Prediction")
+st.caption("ZenithMind AI | B.Tech CSE Project | Student Mental Health Burnout Prediction")
