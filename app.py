@@ -5,7 +5,7 @@ import joblib
 import plotly.graph_objects as go
 
 # Page configuration
-st.set_page_config(page_title="ZenithMind AI", page_icon="🧠", layout="centered")
+st.set_page_config(page_title="ZenithMind AI", page_icon="", layout="centered")
 
 
 # Load trained model and feature list
@@ -176,22 +176,67 @@ if predict_btn:
 
         # Basic wellness recommendation
         
-        st.subheader("Wellness Advice to keep you on track")
+       
+# Wellness Advice Section
+st.subheader(" Wellness Advice to Keep You on Track")
 
-        if sleep_hours < 6:
-            st.write("• Try to increase your sleep duration for better recovery.")
+advice = []
 
-        if screen_time > 8:
-            st.write("• High screen time detected. Consider reducing device usage.")
+# Sleep advice
+if sleep_hours < 6:
+    advice.append(" **Improve your sleep:** Try to get 7–9 hours of sleep each night.")
+elif sleep_hours < 7:
+    advice.append(" **Build a sleep routine:** Try sleeping a little earlier and maintain a regular bedtime.")
+else:
+    advice.append(" **Keep sleeping well:** Maintain your regular sleep schedule.")
 
-        if physical_activity < 1:
-            st.write("• Regular physical activity like walking, jumping , push ups can help reduce stress levels.")
+# Screen time advice
+if screen_time > 8:
+    advice.append(" **Reduce screen time:** Take regular breaks and avoid unnecessary device use.")
+elif screen_time > 5:
+    advice.append(" **Give your eyes a break:** Follow the 20-20-20 rule while using screens.")
+else:
+    advice.append(" **Maintain your screen habits:** Keep balancing screen time with offline activities.")
 
-        if stress_level > 7:
-            st.write("• Stress level is high. Consider relaxation techniques or counseling.")
+# Physical activity advice
+if physical_activity < 1:
+    advice.append(" **Move more:** Try a 20–30 minute walk or another activity you enjoy.")
+else:
+    advice.append(" **Stay active:** Continue regular physical activity and take short movement breaks.")
 
-        if score < 1.5:
-            st.write("• Keep maintaining your current lifestyle balance.")
+# Stress advice
+if stress_level >= 8:
+    advice.append(" **Manage stress:** Break tasks into smaller steps and consider talking to someone you trust.")
+elif stress_level >= 5:
+    advice.append(" **Take mindful breaks:** Try slow breathing, short walks, or a relaxing activity.")
+else:
+    advice.append(" **Protect your peace:** Continue making time for rest and activities you enjoy.")
+
+# Study advice
+if study_hours > 8:
+    advice.append(" **Balance your workload:** Use focused study sessions and schedule regular breaks.")
+elif study_hours < 2:
+    advice.append(" **Create a study routine:** Set one or two small, realistic learning goals for today.")
+else:
+    advice.append(" **Study smart:** Set clear priorities and take short breaks between study sessions.")
+
+# Burnout risk advice
+if score >= 2.5:
+    advice.append(" **Prioritize your well-being:** Reduce unnecessary pressure and reach out to a trusted person or qualified professional if you feel overwhelmed.")
+elif score >= 1.5:
+    advice.append(" **Maintain balance:** Monitor your stress, sleep, and workload, and make small improvements where needed.")
+else:
+    advice.append(" **Keep up the good habits:** Continue maintaining a balanced routine and monitor how you feel.")
+
+# Always display advice
+for item in advice:
+    st.markdown(f"- {item}")
+
+st.caption(
+    "These suggestions are general wellness tips, not a medical diagnosis. "
+    "Your prediction is an estimate and does not replace professional support."
+)
+
 
 
 st.divider()
