@@ -170,7 +170,8 @@ if predict_btn:
             columns=["Metric", "Hours"]
         )
 
-        st.bar_chart(lifestyle_df.set_index("Metric Chart"))
+        # st.bar_chart(lifestyle_df.set_index("Metric Chart"))
+        st.bar_chart(lifestyle_df.set_index("Metric"))
 
 
         # Basic wellness recommendation
